@@ -1,0 +1,64 @@
+<div class="image-loader" *ngIf="imageLoader">
+  <img src="./assets/images/1477.gif" />
+</div>
+<app-header></app-header>
+
+    <!-- know_section -->
+    <div class="know_section questionSec">
+      <div class="container">
+        
+            <div class="know_text">
+              
+              <div class="title-box">
+                <h1 class="page-title">Self-help Products and Services</h1>              
+                <img src="./assets/images/border_center.png" alt="img">
+              </div>
+              
+              <!-- <div class="serach-box">
+                <input type="text"  [(ngModel)]="searchText" placeholder="Search" class="search-input">
+                <input type="submit" value="Go" class="submit-input">
+              </div> -->
+
+              <div class="category-list-box product-list-box">
+                <div class="category-list" *ngFor="let item of solutionResponse; let i = index">
+                  <h3>{{item.productName}}</h3>
+                  <p>{{item.summary}}</p>
+                  <a href="#" data-toggle="modal" data-target="#myModal" (click)="showDetail(item)">See more</a>
+                </div>  
+                <div *ngIf="listShowflag" class="content-center">{{statusMessage}}</div>            
+              </div>             
+            </div>
+         
+      </div>
+    </div>
+    <!-- know_section -->
+                    <!-- <app-repeated-text></app-repeated-text> -->
+
+<app-footer></app-footer>
+
+    <!-- Modal -->
+    <div class="modal fade product-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+          <div *ngIf="!detailShowflag" class="modal-body">
+            <h3><strong>productName</strong> – {{productResponse?.productName}}</h3>
+            <img src="./assets/images/border_center.png" alt="img">
+            <p><strong>Cost Level:</strong> {{productResponse?.costLevel}} </p>
+            <p><strong>Summary:</strong> {{productResponse?.summary}} </p>
+            <p><strong>Website:</strong>{{productResponse?.website}}</p>
+            <p><strong>Contact email:</strong> {{productResponse?.contactEmail}}</p>
+            <p><strong>Member Reviews Summary:</strong> {{productResponse?.membersReviewsummary}}</p>
+            <!-- <p class="latest-review-box"><strong>Latest Reviews:</strong><br/>
+              June 3, 2020:  “ccc vvv bbb”<br/>
+              March 31, 2020:  “ccc vvv bbb”<br/>
+              January 19, 2010:  “ccc vvv bbb”
+            </p> -->
+    
+          </div>
+          <div class="modal-content-center" *ngIf="detailShowflag">{{statusMessage}}</div>
+        </div>
+      </div>
+    </div>

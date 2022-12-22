@@ -1,0 +1,89 @@
+<app-header></app-header>
+
+<div class="know_section home-section-main">
+  <div class="container container-box-style">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 center">
+        <div class="know_text">
+          <div class="home-section-head">
+            <div class="page-title-head">
+              <h1 class="page-title">
+                Welcome to the world’s first chat box for strengthening and healing minds!
+              </h1>
+              <img src="./assets/images/border_center.png" alt="img" />
+            </div>
+            <div class="sub-heading-box">
+              <h5 class="read-more-style"><i>
+                Sponsored and funded by the MIND Foundation with the mission of empowering people to 
+strengthen and heal their minds, proactively.</i>
+              </h5>
+              <div class="test-results-will-make-box mt-5">
+                <h5 class="we-all-have">
+                  Material wellbeing has been improving worldwide over the last several decades. We are all 
+after money, physical fitness and great looks in the pursuit of happiness.
+                </h5>
+              </div>
+            </div>
+
+            <div class="let-face-it-section ">
+              <div class="let-face-it-text-box">
+                <p class="we-all-have"style="color:red" >
+                  But our minds are becoming weaker, and unhappiness is increasing rapidly.<br/>
+                  We give very little attention to fitness of the MIND and emotions that control our thoughts and 
+                  actions.
+                  <a class="read-more-style"  *ngIf="!readMore">
+                    Click to read more: <i class="fa fa-arrow-down" (click)="trigger()"></i>
+                  </a>
+                  <a class="read-more-style" *ngIf="readMore" >
+                    Click to read less: <i class="fa fa-arrow-up" (click)="trigger()"></i>
+                  </a>
+                </p>
+                <div class="hide-text" *ngIf="readMore">
+                  <h5 class="read-more-style">
+                    The world is experiencing a mental health crisis. Anger, violence, stress, anxiety, 
+depression, addictions, and many other mental illnesses are increasing world-wide.
+                  </h5>
+                  <h5 class="read-more-style">
+                    In the US alone, we spend approximately $80-130bn annually on treating mental illnesses, 
+and another $160 billion on religious, spiritual, and coaching services, and products!
+                  </h5>
+                  <h5 class="read-more-style">
+                    About 60 million people need help, but only half get it. We are only 4.3% of world 
+population, but consume 66% of mental health drugs.
+                  </h5>
+                  <h5 class="read-more-style">
+                    Our nation’s youth are being seriously affected by challenges at school, home and work. 
+The COVID pandemic, racial and gender discrimination, and school shootings, have 
+worsened the situation. Psychological problems have a stigma.
+                  </h5>
+                </div>
+              </div>
+            </div>
+            <img src="./assets/images/border_center.png" alt="img" />
+            <div class="let-face-it-text-box">
+              <p class="we-all-have">
+                Life is full of ups and downs. Our minds (emotions and feelings) control how we overcome 
+hurdles, thrive and enjoy life.
+                </p>
+                <p>
+                  Strengthening and healing our minds is essential for happiness. Sharing our stories with others, 
+and seeing how they too are facing hurdles and finding solutions, can help us find our own
+solutions.
+                </p>
+                </div>
+                <img src="./assets/images/border_center.png" alt="img" />
+            <div class="let-face-it-section title-box">
+              <div class="let-face-it-text-box">
+                <h5 class="we-all-have"><b>The HAPPILY-CHATBOX provides a safe, confidential and privacy protected environment to 
+                  begin our journey! </b>
+                </h5>
+                <a [routerLink]="['/network-verify']" class="btn_yellow mt-5">Take me to the CHATBOX</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

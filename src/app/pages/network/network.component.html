@@ -1,0 +1,217 @@
+<div class="image-loader" *ngIf="imageLoader">
+  <img src="./assets/images/1477.gif" />
+</div>
+<app-header></app-header>
+
+ <!-- know_section -->
+ <div class="know_section contact_text netwrok-email">
+    <div class="container">
+
+       <div class="know_text ">
+          <div class="title-box">
+             <h1 class="page-title">My HAPPILY-CHATBOX</h1>
+             <img src="./assets/images/border_center.png" alt="img">
+          </div>
+       </div>
+
+       
+       <div class="row">
+          <div class="col-md-10 col-sm-10 col-xs-12 center">
+             <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a data-toggle="tab" class="tab" href="#home" (click)="inboxListData()">Inbox</a></li>
+                <li><a data-toggle="tab" class="tab" href="#menu1" id="sent" (click)="getAllsendMessagesListData()">My sent message</a></li>
+                <li><a data-toggle="tab" class="tab" href="#menu2" >Compose message</a></li>
+                <!-- <li class="active"><a data-toggle="tab" class="tab" href="#home" >Inbox</a></li>
+                <li><a data-toggle="tab" class="tab" href="#menu1" id="sent" >My sent message</a></li>
+                <li><a data-toggle="tab" class="tab" href="#menu2" >Compose message</a></li> -->
+             </ul>
+             <div class="tab-content">
+                <div id="home" class="tab-pane fade in active" >
+                   <div class="scrollPortion singleMailTable replyMailTable">
+                    <!-- <option *ngFor="let groupItem of groupResponse" [value]="groupItem.id">
+                      {{groupItem.name}}
+                    </option> -->
+                      <table class="table table-bordered allMailTable">
+                        <thead>
+                         <tr *ngIf="!detailModeOn || !replyModeOn">
+                           <th scope="col">From</th>
+                           <th scope="col">Date</th>
+                           <th scope="col">Subject Heading</th>
+                           <th scope="col">Action</th>
+                         </tr>
+                         <tr *ngIf="detailModeOn && replyModeOn">
+                          <th scope="col" colspan="4">
+                            <p style="text-align: right;font-size:15px;margin:0;color:#ffffff">{{replyCharacterCount}}</p> 
+                                <input type="text" id="replyComposeSubject" autocomplete="off" (keyup)="trigger($event, 'replyComposeSubject')" maxlength="1000" name="subject" (change)="textChangeReplySub($event)" [(ngModel)]="replyMessage.subject" [ngModelOptions]="{standalone: true}" placeholder="Enter subject heading here (Maximum 250 words only.)">
+                          </th>
+                        </tr>
+                        </thead>
+                        <tbody *ngIf="!inboxShowflag">
+                          <ng-container *ngFor="let item of inboxResponse; let i = index">
+                            <tr class="hide-cursor" *ngIf="(!detailModeOn && !replyModeOn) || (detailModeOn && !replyModeOn  && currIndex==i)">
+                              <td [ngClass]="{'list-open' : detailModeOn}" (click)="showDetail(i)" style="text-transform:capitalize;">
+                                {{item.from}}
+                              </td>
+                              <td [ngClass]="{'list-open' : detailModeOn}" (click)="showDetail(i)" style="text-transform:capitalize;">
+                                {{item.createdAt | DateFormatPipe}}
+                              </td>
+                              <td [ngClass]="{'list-open' : detailModeOn}" (click)="showDetail(i)" style="text-transform:capitalize;">
+                                {{item.subject}}
+                              </td>
+                              <td class="align-center" style="text-transform:capitalize;">
+                                <a href="javascript:void(0)" (click)="deletePopupInbox(item.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="javascript:void(0)" class="webBtn mt-2" *ngIf="detailModeOn && currIndex==i" (click)="showDetail(i, true, item )">Reply</a>
+                              </td>
+                           </tr>
+                           <!-- [style.background-color]="style1 ? 'red' : (style2 ? 'blue' : null)" -->
+                           <tr *ngIf="replyModeOn && currIndex==i">
+                            <td colspan="3">
+                               <form style="padding-top: 10px;" autocomplete="off">
+                                <p style="text-align: right;font-size:15px;margin:0">{{replyCharacter}}</p> 
+                                  <textarea rows="8" name="body" id="replyTextarea" maxlength="1000" (change)="textChangeReply($event)" [(ngModel)]="replyMessage.body" [ngModelOptions]="{standalone: true}" (keyup)="trigger($event, 'replyTextarea')" placeholder="Enter your message here (Maximum 250 words only.)"></textarea>
+                               </form>
+                            </td>
+                            <td><a href="javascript:void" *ngIf="!sendBtnDisabledReply" type="button" (click)="sendReplyMessage()" class="webBtn">Send</a></td>
+                          </tr>
+
+                           <tr class="replyMailPart" *ngIf="detailModeOn && currIndex==i">
+                         <td colspan="3" [ngClass]="{'list-open' : detailModeOn}">
+                           <div class="mailReply">
+                            <p>ProductUrl: <b style="color:#F1CF00">{{item.productUrl}}</b></p>
+                            <p>Service provider email: <b style="color:#F1CF00">{{item.serviceProviderEmail}}</b></p> 
+                            <p>Message decription: <b style="color:#F1CF00">{{item.body}}</b></p> 
+                           </div>
+                           <a class="webBtn" style="cursor: pointer;" (click)="hideDetail()">Back</a>
+                         </td>
+                      </tr>
+                          </ng-container>
+                        </tbody>
+
+                        <tbody *ngIf="inboxShowflag">
+                          <h5 class="text-message">{{statusMessage}}</h5>
+                          </tbody>
+                      </table>
+                   </div>
+                   <p class="note">Messages older than 30 days are automatically deleted</p>
+                </div>
+
+                
+                <div id="menu1" class="tab-pane fade" >
+                   <div class="scrollPortion singleMailTable">
+                      <table class="table table-bordered allMailTable">
+                        <thead>
+                         <tr>
+                           <th scope="col">To</th>
+                           <th scope="col">Date</th>
+                           <th scope="col">Subject Heading</th>
+                           <th scope="col">Action</th>
+                         </tr>
+                        </thead>
+                        <tbody  *ngIf="!sentMessageShowflag">
+                          <ng-container *ngFor="let item of getAllsendMessagesResponse; let i = index">
+                            <tr class="hide-cursor" *ngIf="(!detailModeOn && !replyModeOn) || (detailModeOn && !replyModeOn  && currIndex==i)">
+                              <ng-container *ngFor="let toData of item.to; let i = index">
+                              <td [ngClass]="{'list-open' : detailModeOn}" (click)="showDetail(i)" style="text-transform:capitalize;">
+                                {{toData.to}}
+                              </td>
+                              </ng-container>
+                              <td [ngClass]="{'list-open' : detailModeOn}" (click)="showDetail(i)" style="text-transform:capitalize;">
+                                {{item.createdAt | DateFormatPipe}}
+                              </td>
+                              <td [ngClass]="{'list-open' : detailModeOn}" (click)="showDetail(i)" style="text-transform:capitalize;">
+                                {{item.subject}}
+                              </td>
+                              <td class="align-center" style="text-transform:capitalize;">
+                                <a href="javascript:void" (click)="deletePopupSender(item.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                              </td>
+                           </tr>
+                           <tr class="replyMailPart" *ngIf="detailModeOn && currIndex==i">
+                            <td colspan="3" [ngClass]="{'list-open' : detailModeOn}">
+                              <div class="mailReply">
+                                <p>ProductUrl:  <b style="color:#F1CF00">{{item.productUrl}}</b></p>
+                                <p>Service provider email:  <b style="color:#F1CF00">{{item.serviceProviderEmail}}</b></p> 
+                                <p>Message decription:  <b style="color:#F1CF00">{{item.body}}</b></p> 
+                              </div>
+                              <a class="webBtn" style="cursor: pointer;" (click)="hideDetail()">Back</a>
+                            </td>
+                         </tr>
+                           </ng-container>
+                        
+                        </tbody>
+                        <tbody *ngIf="sentMessageShowflag">
+                          <h5 class="text-message">{{statusMessage}}</h5>
+                          </tbody>
+                      </table>
+                   </div>
+                   <p class="note">Messages older than 30 days are automatically deleted</p>
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                  <form [formGroup]="networkForm" autocomplete="off">
+                   <div class="composeMail">
+                       <div class="row">
+                         <div class="col-md-3 col-sm-3 col-xs-12">
+                           <label>
+                             <input type="checkbox" formControlName="happily">
+                             <span>Happily</span>
+                           </label>
+                         </div>
+                         <div class="col-md-3 col-sm-3 col-xs-12">
+                           <label>
+                             <input type="checkbox" formControlName="allMembers">
+                             <span>All Members</span>
+                           </label>
+                         </div>
+                      
+                       </div>
+                       <div class="row">
+                         <div class="col-md-12 col-sm-12 col-xs-12">
+                           <div class="subject">
+                             <label>Subject:</label>
+                             <p style="text-align: right;font-size:15px;margin:0">{{remainCharacterSubject}}</p> 
+                             <input type="text" maxlength="1000" id="composeSubject"  (keyup)="trigger($event, 'composeSubject')" name="subject"  (change)="textChangeSub($event)"  formControlName="subject" placeholder="Enter subject heading here (Maximum 250 words only.)" required>
+                           </div>
+                           <div class="alert-message"
+                           *ngIf="(networkFormControl.subject.touched || submitted) && networkFormControl.subject.errors?.required">
+                           Please enter message subject
+                         </div>   
+                         </div>
+                       </div>
+                       <div class="row">
+                         <div class="col-md-12 col-sm-12 col-xs-12">
+                           <div class="composeMailText">
+                            <p style="text-align: right;font-size:15px;margin:0">{{remainCharcter}}</p>
+                             <textarea id="textarea" (keyup)="trigger($event, 'textarea')" name="body" maxlength="1000" (change)="textChange($event)"  formControlName="body" rows="8" placeholder="Enter your message here (Maximum 250 words only.)" required></textarea>
+                           </div>
+                           <div class="alert-message"
+                           *ngIf="(networkFormControl.body.touched || submitted) && networkFormControl.body.errors?.required">
+                           Please enter message body
+                         </div>   
+                         </div>
+                       </div>
+                   </div>
+                   <!-- <div class="serviceProvider">
+                     <p>If you are reviewing or recommending a specific product / service, please provide their contact information.</p>
+                       <div class="row">
+                         <div class="col-md-5 col-sm-5 col-xs-12">
+                           <input type="text" name="" formControlName="productUrl" placeholder="URL of Product / Service  Provider">
+                         </div>
+                         
+                         <div class="col-md-5 col-sm-5 col-xs-12">
+                           <input type="email" name="" formControlName="serviceProviderEmail" placeholder="Email address of Product / Service Provider">
+                         </div>
+                         
+                       </div>
+                   </div> -->
+                   <div class="button-row"><input type="button" *ngIf="!sendBtnDisabled" (click)="onSubmit()" class="webBtn submit" value="Send" /></div>
+                   <!-- <div class="button-row"><input type="button" *ngIf="!sendBtnDisabled"  class="webBtn submit" value="Send" /></div> -->
+                   </form>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ <!-- know_section -->
+ <!-- <app-repeated-text></app-repeated-text> -->
+<!-- Network Section-->
+<app-footer></app-footer>

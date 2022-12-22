@@ -1,0 +1,166 @@
+<app-header></app-header>
+<div class="emotionalHealthMeasurePg">
+  <div class="know_section">
+  <div class="container">
+    <div class="negative ">
+      <div class="secHead">
+
+        <div class="know_text ">
+          <div class="title-box">
+            <h1 class="page-title">How to use your Emotional Health Graph?</h1>
+            <img src="./assets/images/border_center.png" alt="img">
+          </div>
+        </div>
+
+        <p class="m-0">Emotions are like a hidden hand that affect our thoughts and actions.</p>
+        <p><b>Being aware of our emotions is an important first step in strengthening our mind.</b></p>
+      </div>
+    </div>
+    <div class="positive">
+      <div class="secHead">
+        <p>Some emotions are undesirable and unhealthy. They hide our true spirit that is always
+          naturally happy. Be aware and remove them immediately when they appear, by simply
+          focusing on the healthy emotions.
+        </p>
+        <!-- <p>Some emotions are enriching and healthy. They are our true spirit that is always
+          naturally happy! Let them guide our thoughts and actions, daily, constantly!</p> -->
+      </div>
+      <div class="row text-center">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <h6 class="red-text">Mind Weakening, Damaging Emotions </h6>
+          <img src="./assets/images/negative-new.jpeg" class="img-responsive" alt="neg">
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <h6 class="red-text">Mind Strengthening, Healing Emotions </h6>
+          <img src="./assets/images/positive-new.jpeg" class="img-responsive" alt="neg">
+        </div>
+      </div>
+      <div class="secHead">
+        <p><b>The HAPPILY system analyzes your feelings and shows your emotional states in 10
+          groups. The different states are interwoven.</b>
+          <a class="read-more-style" *ngIf="!readMore">
+            See more: <i class="fa fa-arrow-down" (click)="trigger()"></i> 
+          </a>
+          <a class="read-more-style" *ngIf="readMore">
+            See less: <i class="fa fa-arrow-up" (click)="trigger()"></i> 
+          </a>
+        </p>
+      </div>
+      <div class="row text-center" *ngIf="readMore">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <h6 class="red-text">Mind Weakening, Damaging Emotions </h6>
+          <div class="left-table">
+            <h4>Unhealthy Emotional States
+            </h4>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Discontent</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Desire</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Anger</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Sadness</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Jealousy</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Hatred</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Greed</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Fear</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Fatigue</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Egotism</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <h6 class="red-text">Mind Strengthening, Healing Emotions </h6>
+          <div class="right-table">
+            <h4>Healthy Emotional States
+            </h4>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Content</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Indifference</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Calm</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Cheerfulness</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Admiration</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Love</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Generosity</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Confidence</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Zestfulness</p>
+            </div>
+            <div class="divider-wrap"> </div>
+            <div class="table-content-element">
+              <p>Humility</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="let-face-it-section title-box">
+        <p class="we-all-have">
+         <b> HAPPILY also gives you access to the</b>
+          <a class="read-more-style" [routerLink]="['/plans']">
+            HAPPILY Privacy Protected, Anonymous
+            Group Chat App
+          </a>
+          <b>and the</b> 
+          <a class="read-more-style">
+            HAPPILY Directory of Products & Services
+          </a>
+          <b>to improve brains
+and minds. Click on the links to go to those websites!</b>
+        </p>
+    </div>
+      <a [routerLink]="['/result-emotional']" class="btn_yellow">Show me my emotional health</a>
+    </div>
+  </div>
+  </div>
+</div>
+<!-- <app-repeated-text></app-repeated-text> -->
+<app-footer></app-footer>

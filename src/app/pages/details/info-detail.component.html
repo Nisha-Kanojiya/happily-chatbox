@@ -1,0 +1,264 @@
+<div class="image-loader" *ngIf="imageLoader">
+    <img src="./assets/images/1477.gif" />
+  </div>
+<app-header></app-header>
+<!-- Contact Section-->
+<div class="know_section contact_text userinfo_page">
+    <div class="container">
+        <div class="know_text ">
+            <div class="title-box">
+                <!-- <h1 class="page-title">How are you feeling? HAPPILY will analyze the root causes and give you a
+                    customized solution plan</h1> -->
+                    <h1 class="page-title">Enter your basic information. Talk about what difficulties you are facing, what have you done 
+                        to overcome them, and what help you need to strengthen your mind.
+                    </h1>
+                <img src="./assets/images/border_center.png" alt="img">
+            </div>
+
+            <p>Your data is confidential and privacy protected. No one will know your identity, not even HAPPILY!</p>
+        </div>
+
+        <div class="row user-info-box">
+            <div class="col-md-10 col-sm-10 col-xs-12 center">
+
+
+                <div class="contacy_form">
+                    <form [formGroup]="privacyTestForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                      <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <label >Age in Years</label>
+                          <input type="text" required placeholder="Age in Years" formControlName="age"
+                                minlength="1" maxlength="3"
+                                onkeypress="return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 " />
+                                <!-- <div class="text-danger"
+                                *ngIf="(privacyTestControl.age.touched || submitted) && privacyTestControl.age.errors?.required">
+                                Please enter age
+                              </div> -->
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <label >Country</label>
+                            <select required formControlName="country" class="form-control">
+                                <option value="" selected>Select Country</option>
+                                <option *ngFor="let conutries of countryData" [value]="conutries">
+                                    {{conutries}}
+                                </option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="(privacyTestControl.country.touched || submitted) && privacyTestControl.country.errors?.required">
+                            Please select country
+                          </div>
+                        </div>
+                      </div>
+                       <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <label >Language</label>
+                            <select id="languages" required formControlName="language" class="form-control">
+                                <option value="" selected> Select Language</option>
+                                <option *ngFor="let languageData of languageList" [value]="languageData.name">
+                                    {{languageData.name}}
+                                </option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="(privacyTestControl.language.touched || submitted) && privacyTestControl.language.errors?.required">
+                            Please select language
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <label >Religion</label>
+                            <select required formControlName="religion" class="form-control">
+                                <option value="" selected>Select Religion</option>
+                                <option *ngFor="let religionData of religionList" [value]="religionData">
+                                    {{religionData}}
+                                </option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="(privacyTestControl.religion.touched || submitted) && privacyTestControl.religion.errors?.required">
+                            Please select religion
+                          </div>
+                          <p><i>“Required if you want to see faith specific solutions.” </i></p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <p style="text-align: right;font-size:15px;margin:0;color: #ffffff;">{{remain}}</p>
+                            <textarea required maxlength="1000" id="description" (keyup)="trigger($event, 'description')" formControlName="description" rows="5"
+                            placeholder="Summarize what you want to improve or problems to solve, in less than 250 words."
+                            data-validation-required-message="Please enter a message."></textarea>
+                            <div class="text-danger"
+                            *ngIf="(privacyTestControl.description.touched || submitted) && privacyTestControl.description.errors?.required">
+                            Please enter description
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <p style="text-align: right;font-size:15px;margin:0;color: #ffffff;">{{remainReview}}</p>
+                            <textarea required maxlength="1000" id="review" formControlName="review" (keyup)="trigger($event, 'review')" rows="5"
+                            placeholder="Which solutions have you tried already?  How effective were the solutions? Give details of specific services, products, sources and your rating: Very Satisfied – OK – Very Unsatisfied."
+                            data-validation-required-message="Please enter a message."></textarea>
+                            <div class="text-danger"
+                            *ngIf="(privacyTestControl.review.touched || submitted) && privacyTestControl.review.errors?.required">
+                            Please enter review
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label><input type="checkbox" formControlName="generalFeeling"> 
+                                Improve general feeling of
+                                well-being
+                            </label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label><input type="checkbox" formControlName="mindPower" > Make my mind powerful for career and life.
+                                Popular among high school and college students!
+                            </label>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" >
+                            <ng-multiselect-dropdown 
+                                [placeholder]="'Solve specific problems (drop down list to select from)'"
+                                [data]="problemList" ngDefaultControl [(ngModel)]="userInfoData.problems" [ngModelOptions]="{standalone: true}"
+                                [settings]="problemsdropdownSettings" (onSelect)="onProblemsItemSelect($event)"
+                                (onDeSelect)="onProblemsDeSelect($event)">
+                                <option *ngFor="let problemData of problemList" [value]="problemData.id">
+                                    {{problemData.problem}}
+                                </option>
+                            </ng-multiselect-dropdown>
+                        </div>
+                       
+                        <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+                            <ng-multiselect-dropdown 
+                                [placeholder]="'Solve specific problems (drop down list to select from)'"
+                                [data]="problemList" formControlName="problems" 
+                                [settings]="problemsdropdownSettings" (onSelect)="onProblemsItemSelect($event)"
+                                (onDeSelect)="onProblemsDeSelect($event)">
+                                <option *ngFor="let problemData of problemList" [value]="problemData.id">
+                                    {{problemData.problem}}
+                                </option>
+                            </ng-multiselect-dropdown>
+                        </div> -->
+
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                          <button id ="submitBtn" class="webBtn" >Next</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
+
+                <!-- <div class="contacy_form">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Age in Years</label>
+                            <input type="text" readonly placeholder="Age in Years"
+                                [(ngModel)]="userInfoData.age" ngDefaultControl minlength="1" maxlength="3"
+                                onkeypress="return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 "
+                                data-validation-required-message="Please enter Age in Years." />
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Country</label>
+                            <select disabled="true" ngDefaultControl
+                                [(ngModel)]="userInfoData.country">
+                                <option value="" selected>Country of your birth</option>
+                                <option *ngFor="let countries of countryData" [value]="countries">
+                                    {{countries}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Language</label>
+                            <select disabled="true"  ngDefaultControl
+                                [(ngModel)]="userInfoData.language">
+                                <option value="" selected>Language</option>
+                                <option readonly *ngFor="let languageData of languageList" [value]="languageData.name">
+                                    {{languageData.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Religion</label>
+                            <select disabled="true" ngDefaultControl
+                                [(ngModel)]="userInfoData.religion">
+                                <option value="" selected>Religion</option>
+                                <option *ngFor="let religionData of religionList" [value]="religionData">
+                                    {{religionData}}
+                                </option>
+                                <option *ngIf="userInfoData.religion == 'None'">{{userInfoData.religion}}</option>
+                            </select>
+                            <p><i>“Required if you want to see faith specific solutions.” </i></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <textarea id="message" readonly ngDefaultControl
+                                [(ngModel)]="userInfoData.description" rows="5"
+                                placeholder="Summarize what you want to improve or problems to solve, in less than 250 words."
+                                data-validation-required-message="Please enter a message."></textarea>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <textarea id="review" readonly ngDefaultControl
+                                [(ngModel)]="userInfoData.review" rows="5"
+                                placeholder="Which solutions have you tried already?  How effective were the solutions? Give details of specific services, products, sources and your rating: Very Satisfied – OK – Very Unsatisfied."
+                                data-validation-required-message="Please enter a message."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label><input type="checkbox" [(ngModel)]="userInfoData.generalFeeling" disabled="true"
+                                    id="exampleCheck">
+                                Improve general feeling of
+                                well-being
+                            </label>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label><input type="checkbox" disabled="true" [(ngModel)]="userInfoData.mindPower"
+                                    id="exampleCheck1"> Make my mind powerful for career and life
+                                period.
+                                Popular among high school and college students!
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <ng-multiselect-dropdown disabled="true"
+                                [placeholder]="'Solve specific problems (drop down list to select from)'"
+                                [data]="problemList" ngDefaultControl [(ngModel)]="userInfoData.problems"
+                                [settings]="problemsdropdownSettings" (onSelect)="onProblemsItemSelect($event)"
+                                (onDeSelect)="onProblemsDeSelect($event)">
+                                <option *ngFor="let problemData of problemList" [value]="problemData.id">
+                                    {{problemData.problem}}
+                                </option>
+                            </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                  
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <button id="submitBtn" class="webBtn" [routerLink]="['/question-page']">Next</button>
+                        </div>
+                    </div>
+
+                </div> -->
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <app-repeated-text></app-repeated-text> -->
+<app-footer></app-footer>

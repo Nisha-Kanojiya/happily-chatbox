@@ -1,0 +1,70 @@
+.page-section#privacy {
+  padding: 7rem 0 3rem !important;
+}
+.dropdown-btn{
+	border-radius: 50px !important;
+}
+.form-check-label {
+  font-size: 1rem !important;
+}
+.swal-title {
+  margin: 0px;
+  font-size: 25px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
+  margin-bottom: 28px;
+}
+.asterisk {
+font-size: 24px;
+position: absolute;
+padding: 4px 6px;
+}
+.form-group-check {
+  display: block;
+  margin-bottom: 15px;
+  padding-left: 0.25rem !important;
+}
+
+.form-group-check input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.form-group-check label {
+  position: relative;
+  cursor: pointer;
+}
+
+.form-group-check label:before {
+  content:'';
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 2px solid #0079bf;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.form-group-check input:checked + label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 6px !important;
+  left: 11px !important;
+  width: 6px;
+  height: 14px;
+  border: solid #0079bf;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.user-info-box {
+  margin-bottom: 80px;
+}

@@ -1,0 +1,105 @@
+<div class="image-loader" *ngIf="imageLoader">
+  <img src="./assets/images/1477.gif" />
+</div>
+<app-header></app-header>
+<div class="know_section questionSec">
+  <div class="container">
+     
+        <div class="know_text">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="know_text ">
+                <div class="title-box">
+                   <h1 class="page-title">Reflect on how you are feeling lately</h1>
+                   <img src="./assets/images/border_center.png" alt="img">
+                </div>
+              </div>
+
+          <div class="count-timer-section" *ngIf="isTestStarted">
+            <div class="count-downb-box"> 
+              <div id="countdown"  [ngClass]="{'countdown-head-style': isTestStarted == 1}">
+                <!-- <div id="countdown-number"></div> -->
+                <!-- <svg >
+                  <circle r="18" cx="20" cy="20"></circle>
+                </svg> -->
+      
+                <!-- <svg width="300" height="100">
+                    <rect width="50" height="150"/>
+                 <circle r="36" cx="40" cy="40"></circle> 
+                </svg> -->
+                <div class="meter">
+                  <span  [style.width]="width+'%'"></span>
+                </div>
+              </div>
+      
+              <h6 class="time-remain"> Time Remaining</h6>
+             
+            </div>
+      
+            <div class="task-percentage-complete">
+              <!-- <igx-circular-bar
+              [value]="taskPercentage"
+              [animate]="true"
+              class="custom-size"
+              ></igx-circular-bar> -->
+              <div class="meterComplete">
+                <span  [style.width]="taskPercentage+'%'"></span>
+              </div>
+              <!-- <div id="countdown-percentage"  [ngClass]="{'countdown-percentage-head-style': isTestStarted == 1}">
+              <svg height="100" width="100">
+                <circle r="36" cx="40" cy="40"></circle>
+              </svg>
+            </div> -->
+      
+            <h6 class="question-complete"> Questions Completed</h6>
+      
+            </div>
+      
+          </div>
+        </div>
+        </div>
+
+            <div class="questions-box-style" *ngFor="let questionData of questionList; let i = index">
+              <div class="rating" *ngIf="i <= currentIndex && i > previousIndexPosition">
+                <div *ngIf="i == 0">
+                  <p>Mind is a process that runs constantly in the brain. Emotions are states of the process. They drive thoughts. Thoughts drive behaviors and actions. Actions have consequences. They all impact the brain. The brain impacts our emotions and body.</p>
+                  <h4><i>It’s all connected!</i></h4>
+                  <p>Don’t analyze.  Don’t dwell on a question too long.</p>
+                  <p>For each question, mind weakening or damaging feelings are described on the left 
+                    side. Mind strengthening or healing feelings are described on the right side.</p>
+                  <p>Move the star to the left or right based on how intense your feelings are between 
+                    the two extremes. Range is -100 to +100.</p></div>
+                
+                  <div class="row">
+                  <div class="col-md-5 col-sm-5 col-xs-5">
+                    <!-- <h5 name="negativeLabel"><b>Negative Energy{{questionData.length}}</b></h5> -->
+                    <h5> {{questionData.negativeLabel}}</h5>
+                  </div>
+                  <div class="col-md-2 col-sm-2 col-xs-2"></div>
+                  <div class="col-md-5 col-sm-5 col-xs-5">
+                    <!-- <h5 name="positiveLabel"><b>Positive Energy</b></h5> -->
+                    <h5>{{questionData.positiveLabel}}</h5>
+                  </div>
+                  <div class="col-md-10 col-sm-10 col-xs-12 center">
+                    <div class="sliderContainer">
+                      <ng5-slider (valueChange)="getVal($event , questionData, i)" id="slider" [(value)]="questionData.selectedValue" [options]="options"></ng5-slider>
+                    </div>
+                  </div>
+                  <div class="pageBtns"  *ngIf="currentIndex == i">
+                    <button type="button" id="prevBtn" *ngIf="currentIndex > 1" (click)="getPreviousQuestionPair(questionData, i)" class="btn_yellow">Previous</button>
+                    <button type="button" id="nextBtn" *ngIf="currentIndex <= questionList.length-1" (click)="getNextQuestionPair(questionData, i)" class="btn_yellow ml-3">Next</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- <div class="tab">
+              <p class="yellow_text">Congratulations! You have successfully completed your self-Reflection test!</p>
+            </div> -->
+
+        </div>
+      
+  </div>
+</div>
+<!-- <app-repeated-text></app-repeated-text> -->
+<app-footer></app-footer>
